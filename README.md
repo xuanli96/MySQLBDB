@@ -95,27 +95,27 @@ UPDATE 表名 SET 列名1=值1,列名2=值2,...[WHERE 条件]；UPDATE stu SET a
       排序<br>
   limit<br>
       分页限定<br>
-3.基础查询
-1）多个字段的查询
-SELECT 字段名1，字段名2，...FROM 表名;
-SELECT NAME,age FROM student;
-SELECT address FROM student;
-注意：如果查询所有字段则可以使用/*替代字段列表。
-SELECT /* FROM student;
-2）去除重复的结果集：DISTINCT
-SELECT DISTINCT address FROM student;
-3）计算列
-一般可以使用四则运算计算一些列的值，一般只会进行数值型的计算。
-SELECT NAME,math,english,math+english FROM student;
-IFNULL(表达式1，表达式2)：null参与的计算，结果都为null；表达式1：哪个字段需要判断是否为null；如果该字段为null后的替换值。
-SELECT NAME,math,english,math+IFNULL(english,0) FROM student;
-4）起别名
-AS:也可以省略
-SELECT NAME,math,english,math+IFNULL(english,0) AS 总分 FROM student; 
-SELECT NAME,math 数学,english 英语,math+IFNULL(english,0) 总分 FROM student;
-4.模糊查询LIKE:
-SELECT /* FROM student WHERE NAME LIKE '马%'; --查询姓马的有哪些
-SELECT /* FROM student WHERE NAME LIKE '_化%';--查询姓名第二个字是化的人
-SELECT /* FROM student WHERE NAME LIKE '___';--查询姓名是3个字的人
-SELECT /* FROM student WHERE NAME LIKE '%马%';--查询姓名包含马的人
-SELECT /* FROM student WHERE NAME LIKE '%德%';--查询姓名包含德的人
+3.基础查询<br>
+1）多个字段的查询<br>
+SELECT 字段名1，字段名2，...FROM 表名;<br>
+SELECT NAME,age FROM student;<br>
+SELECT address FROM student;<br>
+注意：如果查询所有字段则可以使用/*替代字段列表。<br>
+SELECT /* FROM student;<br>
+2）去除重复的结果集：DISTINCT<br>
+SELECT DISTINCT address FROM student;<br>
+3）计算列<br>
+一般可以使用四则运算计算一些列的值，一般只会进行数值型的计算。<br>
+SELECT NAME,math,english,math+english FROM student;<br>
+IFNULL(表达式1，表达式2)：null参与的计算，结果都为null；表达式1：哪个字段需要判断是否为null；如果该字段为null后的替换值。<br>
+SELECT NAME,math,english,math+IFNULL(english,0) FROM student;<br>
+4）起别名<br>
+AS:也可以省略<br>
+SELECT NAME,math,english,math+IFNULL(english,0) AS 总分 FROM student; <br>
+SELECT NAME,math 数学,english 英语,math+IFNULL(english,0) 总分 FROM student;<br>
+4.模糊查询LIKE:<br>
+SELECT /* FROM student WHERE NAME LIKE '马%'; --查询姓马的有哪些<br>
+SELECT /* FROM student WHERE NAME LIKE '_化%';--查询姓名第二个字是化的人<br>
+SELECT /* FROM student WHERE NAME LIKE '___';--查询姓名是3个字的人<br>
+SELECT /* FROM student WHERE NAME LIKE '%马%';--查询姓名包含马的人<br>
+SELECT /* FROM student WHERE NAME LIKE '%德%';--查询姓名包含德的人<br>
