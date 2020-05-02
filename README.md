@@ -64,3 +64,58 @@ ALTER TABLE 表名 DROP 属性；-- ALTER TABLE STU DROP SEX;<br>
 4.删除（Delete）：<br>
 DROP TABLE 表名;--删除数据库<br>
 DROP TABLE IF EXISTS 表名;--如果存在数据库不删除，不存在删除<br>
+5.客户端图形化工具:SQLYog<br>
+
+### DML:增删改表中的数据
+1.添加数据<br>
+INSERT INTO 表名（列名1，列名2，...，列名n） values(值1，值2，...，值n)；INSERT INTO stu(id,NAME,age) VALUES(1,'zhangsan',18);<br>
+注意：列名和值要一一对应；如果表名后，不定义列名，则默认给所有列添加值，否则要给所有值赋值，INSERT INTO stu VALUES(2,'zhaomin',17,99.9,NULL,NULL);除了数字类型，其他类型需要使用引号，单双都可以，INSERT INTO stu VALUES(2,'zhaoliu',17,99.9,"1893-11-11",NULL);。<br>
+2.删除数据<br>
+DELETE FROM 表名 [WHERE 条件]; --DELETE FROM stu WHERE id=1;<br>
+注意：如果不加条件，则删除表中所有记录,DELETE FROM 表名;(有多少次记录，执行多少次，效率低)<br>
+TRUNCATE TABLE 表名；TRUNCATE TABLE stu；--删除表，再创建一个一摸一样的空表（执行两个命令，删除，创建，效率高）。<br>
+3.修改数据<br>
+UPDATE 表名 SET 列名1=值1,列名2=值2,...[WHERE 条件]；UPDATE stu SET age=117,score=100 WHERE id=2;<br>
+注意：如果不加任何条件，则会将表中所有记录全部修改<br>
+
+### DQL：查询表中的记录
+1.SELECT * FROM STU;<br>
+2.语法：
+  SELECT <br>
+      字段列表<br>
+  FROM<br>
+      表名列表<br>
+  where<br>
+      条件列表<br>
+  group by<br>
+      分组字段<br>
+  having<br>
+      分组之后的条件<br>
+  order by<br>
+      排序<br>
+  limit<br>
+      分页限定<br>
+3.基础查询
+1）多个字段的查询
+SELECT 字段名1，字段名2，...FROM 表名;
+SELECT NAME,age FROM student;
+SELECT address FROM student;
+注意：如果查询所有字段则可以使用/*替代字段列表。
+SELECT /* FROM student;
+2）去除重复的结果集：DISTINCT
+SELECT DISTINCT address FROM student;
+3）计算列
+一般可以使用四则运算计算一些列的值，一般只会进行数值型的计算。
+SELECT NAME,math,english,math+english FROM student;
+IFNULL(表达式1，表达式2)：null参与的计算，结果都为null；表达式1：哪个字段需要判断是否为null；如果该字段为null后的替换值。
+SELECT NAME,math,english,math+IFNULL(english,0) FROM student;
+4）起别名
+AS:也可以省略
+SELECT NAME,math,english,math+IFNULL(english,0) AS 总分 FROM student; 
+SELECT NAME,math 数学,english 英语,math+IFNULL(english,0) 总分 FROM student;
+4.模糊查询LIKE:
+SELECT /* FROM student WHERE NAME LIKE '马%'; --查询姓马的有哪些
+SELECT /* FROM student WHERE NAME LIKE '_化%';--查询姓名第二个字是化的人
+SELECT /* FROM student WHERE NAME LIKE '___';--查询姓名是3个字的人
+SELECT /* FROM student WHERE NAME LIKE '%马%';--查询姓名包含马的人
+SELECT /* FROM student WHERE NAME LIKE '%德%';--查询姓名包含德的人
