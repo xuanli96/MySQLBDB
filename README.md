@@ -119,3 +119,36 @@ SELECT /* FROM student WHERE NAME LIKE '_化%';--查询姓名第二个字是化�
 SELECT /* FROM student WHERE NAME LIKE '___';--查询姓名是3个字的人<br>
 SELECT /* FROM student WHERE NAME LIKE '%马%';--查询姓名包含马的人<br>
 SELECT /* FROM student WHERE NAME LIKE '%德%';--查询姓名包含德的人<br>
+
+5.排序查询<br>
+ORDER BY 排序字段1 排序方式2，排序字段2 排序方式2...;ASC,升序，默认的；DESC，降序；<br>
+SELECT * FROM student ORDER BY math DESC;<br>
+SELECT * FROM student ORDER BY math DESC,english ASC;<br>
+6.聚合函数<br>
+将一列数据作为一个整体，进行纵向的计算；count：计算个数；max：计算最大值；min：计算最小值；sum：求和；avg：平均值；<br>
+注意：聚合函数的计算，排除null值，解决方案，选择不包含非空的列，使用IFNULL函数，选择主键的属性，或者使用count（/*），*的意思是只要一行中有属性不为空，就加1（不推荐使用）。<br>
+SELECT COUNT(NAME) FROM student; <br>
+SELECT COUNT(IFNULL(english,0)) FROM student;<br>
+SELECT MAX(math) FROM student;<br>
+SELECT MIN(math) FROM student;<br>
+SELECT SUM(math) FROM student;<br>
+SELECT SUM(english) FROM student;<br>
+SELECT AVG(math) FROM student;<br>
+7.分组查询<br>
+GROUP BY 分组字段；<br>
+SELECT sex, AVG(math) FROM student GROUP BY sex;<br>
+SELECT sex, AVG(math),COUNT(id) FROM student GROUP BY sex;<br>
+SELECT sex, AVG(math),COUNT(id) FROM student WHERE math>70 GROUP BY sex;<br>
+SELECT sex, AVG(math),COUNT(id) FROM student WHERE math>70 GROUP BY sex HAVING COUNT(id)>2;<br>
+SELECT sex, AVG(math),COUNT(id) 人数 FROM student WHERE math>70 GROUP BY sex HAVING 人数>2;<br>
+WHERE和HAVING的区别：WHERE在分组之前限定，如果不满足条件，则不参与分组，HAVING在分组之后进行限定，如果不满足结果，则不会被查询出来；WHERE后不可以跟聚合函数，而HAVING可以进行聚合函数的判断。<br>
+8.分页查询<br>
+LIMIT 开始的索引，每页查询的条数；
+SELECT * FROM student LIMIT 0,3; --第一页
+SELECT * FROM student LIMIT 3,3; --第二页
+分页公式：开始的索引=（当前的页码-1）*/每页显示的条数
+分页操作是一个“方言”，LIMIT只能在MySQL用
+### 约束
+### 多表之间的关系
+### 范式
+### 数据库备份和还原
