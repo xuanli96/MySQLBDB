@@ -119,7 +119,6 @@ SELECT /* FROM student WHERE NAME LIKE '_化%';--查询姓名第二个字是化�
 SELECT /* FROM student WHERE NAME LIKE '___';--查询姓名是3个字的人<br>
 SELECT /* FROM student WHERE NAME LIKE '%马%';--查询姓名包含马的人<br>
 SELECT /* FROM student WHERE NAME LIKE '%德%';--查询姓名包含德的人<br>
-
 5.排序查询<br>
 ORDER BY 排序字段1 排序方式2，排序字段2 排序方式2...;ASC,升序，默认的；DESC，降序；<br>
 SELECT * FROM student ORDER BY math DESC;<br>
@@ -149,6 +148,20 @@ SELECT * FROM student LIMIT 3,3; --第二页
 分页公式：开始的索引=（当前的页码-1）*/每页显示的条数
 分页操作是一个“方言”，LIMIT只能在MySQL用
 ### 约束
+
+1.对表中的数据进行限定，保证数据的正确性，有效性和完整性。
+2.分类：主键约束，primary key；非空约束，not null；唯一约束：unique；外键约束：foreign key
+3.非空约束，not null：
+创建表时添加约束
+ CREATE TABLE stu1(
+ id INT,
+ NAME VARCHAR(20) NOT NULL
+ );
+ 删除NAME的非空约束
+ ALTER TABLE stu1 MODIFY NAME VARCHAR(20);
+ 创建表完成后，添加非空约束
+ ALTER TABLE stu1 MODIFY NAME VARCHAR(20) NOT NULL;
+4.唯一约束：unique，值不能重复：
 ### 多表之间的关系
 ### 范式
 ### 数据库备份和还原
